@@ -2,9 +2,11 @@
 import(BiocGenerics, methods)
 
 ## Importing functions
-importFrom("utils", "download.file")
+importFrom("jsonlite", "fromJSON")
+importFrom("remotes", "install_github")
+importFrom("utils", "download.file", "install.packages")
 
 ## Functions
 export(
-    "pathList", "genWorkenvir"
+    "pathList", "genWorkenvir", "availableWF"
 ) 
