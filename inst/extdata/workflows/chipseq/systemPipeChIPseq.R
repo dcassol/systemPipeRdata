@@ -124,7 +124,7 @@ targets[1:4,-c(5,6)]
 
 ## ----check_files_exist, eval=FALSE------------------------
 ## writeTargetsout(x=args, file="targets_bam.txt", step = 1,
-##                 new_col = "FileName", new_col_output_index = 1, overwrite = TRUE)
+##                 new_col = "FileName", new_col_output_index = 1, overwrite = TRUE, remove=TRUE)
 ## outpaths <- subsetWF(args , slot="output", subset=1, index=1)
 ## file.exists(outpaths)
 
@@ -176,14 +176,7 @@ targets[1:4,-c(5,6)]
 ## 
 ## args_merge <- mergeBamByFactor(args=args, overwrite=TRUE)
 ## writeTargetsout(x=args_merge, file="targets_mergeBamByFactor.txt", step = 1,
-##                 new_col = "FileName", new_col_output_index = 1, overwrite = TRUE )
-
-
-## ----call_peaks_macs_envVar_settings, eval=FALSE----------
-## # Skip if a module system is not used
-## module("list")
-## module("unload", "miniconda2")
-## module("load", "python/2.7.14") # Make sure to set up your enviroment variable for MACS2
+##                 new_col = "FileName", new_col_output_index = 1, overwrite = TRUE, remove=TRUE)
 
 
 ## ----call_peaks_macs_noref, eval=FALSE--------------------
@@ -196,7 +189,7 @@ targets[1:4,-c(5,6)]
 ## outpaths <- subsetWF(args, slot="output", subset=1, index=1)
 ## file.exists(outpaths)
 ## writeTargetsout(x=args, file="targets_macs.txt", step = 1,
-##                 new_col = "FileName", new_col_output_index = 1, overwrite = TRUE )
+##                 new_col = "FileName", new_col_output_index = 1, overwrite = TRUE)
 
 
 ## ----call_peaks_macs_withref, eval=FALSE------------------
@@ -212,11 +205,10 @@ targets[1:4,-c(5,6)]
 ## outpaths_input <- subsetWF(args_input , slot="output", subset=1, index=1)
 ## file.exists(outpaths_input)
 ## writeTargetsout(x=args_input, file="targets_macs_input.txt", step = 1,
-##                 new_col = "FileName", new_col_output_index = 1, overwrite = TRUE )
+##                 new_col = "FileName", new_col_output_index = 1, overwrite = TRUE)
 
 
 ## ----consensus_peaks, eval=FALSE--------------------------
-## # source("http://faculty.ucr.edu/~tgirke/Documents/R_BioCond/My_R_Scripts/rangeoverlapper.R")
 ## outpaths <- subsetWF(args , slot="output", subset=1, index=1) ## escolher um dos outputs index
 ## peak_M1A <- outpaths["M1A"]
 ## peak_M1A <- as(read.delim(peak_M1A, comment="#")[,1:3], "GRanges")
@@ -297,7 +289,7 @@ targets[1:4,-c(5,6)]
 ## dir_path <- system.file("extdata/cwl/bowtie2/bowtie2-pe", package="systemPipeR")
 ## args_bam <- loadWF(targets = targets, wf_file = "bowtie2-mapping-pe.cwl",
 ##     input_file = "bowtie2-mapping-pe.yml", dir_path = dir_path)
-## args_bam <- renderWF(args_bam, inputvars = c(FileName = "_FASTQ_PATH1_", SampleName = "_SampleName_"))
+## args_bam <- renderWF(args_bam, inputvars = c(FileName1 = "_FASTQ_PATH1_", SampleName = "_SampleName_"))
 ## args_bam <- output_update(args_bam, dir=FALSE, replace=TRUE, extension=c(".sam", ".bam"))
 ## outpaths <- subsetWF(args_bam, slot="output", subset=1, index=1)
 ## 

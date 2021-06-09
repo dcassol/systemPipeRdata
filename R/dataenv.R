@@ -95,9 +95,8 @@ genWorkenvir <- function(workflow, mydirname=NULL, bam=FALSE, ref="master", subd
   print(paste("Generated", mydirname2, "directory. Next run in", workflow, "directory, the R code from *.Rmd template interactively. Alternatively, workflows can be exectued with a single command as instructed in the vignette."))
 }
 ## Usage:
-# genWorkenvir(workflow="varseq", mydirname=NULL)
-# genWorkenvir(workflow="systemPipeR/systemPipeVARseq", mydirname=NULL)
-# genWorkenvir(workflow="systemPipeR/systemPipeRNAseq", mydirname="rnaseq",
+#genWorkenvir(workflow="systemPipeR/SPvarseq", mydirname="varseq")
+# genWorkenvir(workflow="systemPipeR/SPrnaseq", mydirname="rnaseq",
 # url = "https://raw.githubusercontent.com/systemPipeR/systemPipeRNAseq/cluster/vignettes/systemPipeRNAseq.Rmd",
 # urlname = "rnaseq_V-cluster.Rmd")
 
@@ -105,7 +104,7 @@ genWorkenvir <- function(workflow, mydirname=NULL, bam=FALSE, ref="master", subd
 ## Generate data/param for SPR_packages ##
 ############################################
 genWorkdata <- function(path=getwd(), data=TRUE, param=TRUE){
-  ## TODO: we can add a check if it is a sysproject
+  ## TODO: we can add a check if it is a spr_project
   suppressWarnings({
     data.path <- normalizePath(paste0(path, "/data/"))
     param.path <- normalizePath(paste0(path, "/param/"))
@@ -121,6 +120,7 @@ genWorkdata <- function(path=getwd(), data=TRUE, param=TRUE){
     file.copy(pathList()$paramdir, normalizePath(path), recursive=TRUE)
     print("The 'param' directory was successfully copied to your project.")
   }
+  file.copy(c(paste0(pathList()$paramdir, "batchtools.slurm.tmpl"), paste0(pathList()$paramdir, ".batchtools.conf.R")), path)
 }
 
 ## Usage:
@@ -167,7 +167,7 @@ genWorkdata <- function(path=getwd(), data=TRUE, param=TRUE){
       if (pkg_install == "1"){
         if (!requireNamespace("remotes", quietly=TRUE))
           install.packages("remotes", quiet = TRUE)
-        remotes::install_github(repo=package_repo, ref=ref, subdir=subdir, quiet = TRUE, upgrade = "always", build_vignettes=TRUE, dependencies=TRUE)
+        remotes::install_github(repo=package_repo, ref=ref, subdir=subdir, quiet = TRUE, upgrade = "ask", build_vignettes=TRUE, dependencies=TRUE)
       } else if (pkg_install == 2)
         stop (paste("The", pkg_name, "package is required, you can install the package and come back later!"))
     }
@@ -232,5 +232,4 @@ availableWF <- function(github = FALSE){
 ## Usage:
 # availableWF()
 # availableWF(github = TRUE)
-
 

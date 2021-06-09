@@ -108,14 +108,14 @@ uses the name of the chosen workflow. An error is issued if a directory of the s
 name and path exists already. 
 
 ```{r generate_workenvir, eval=FALSE}
-genWorkenvir(workflow="varseq", mydirname=NULL)
+genWorkenvir(workflow="systemPipeR/SPvarseq", mydirname="varseq")
 setwd("varseq")
 ```
 
 On Linux and OS X systems the same can be achieved from the command-line of a terminal with the following commands.
 
 ```{bash generate_workenvir_from_shell, eval=FALSE}
-$ Rscript -e "systemPipeRdata::genWorkenvir(workflow='varseq', mydirname=NULL)"
+$ Rscript -e "systemPipeRdata::genWorkenvir(workflow='systemPipeR/SPvarseq', mydirname='varseq')"
 ```
 
 # Workflow templates collection
@@ -133,10 +133,11 @@ listed template can be created as described above.
 
 The workflow template choose from Github will be installed as an R package, and 
 also it creates the environment with all the settings and files to run the demo 
-analysis 
+analysis.
+
 ```{r eval=FALSE, tidy=FALSE}
-genWorkenvir(workflow="systemPipeR/systemPipeVARseq", mydirname="NULL")
-setwd("systemPipeVARseq")
+genWorkenvir(workflow="systemPipeR/SPrnaseq", mydirname="NULL")
+setwd("SPrnaseq")
 ```
 
 Besides, it is possible to choose different versions of the workflow template, 
@@ -144,8 +145,8 @@ defined through other branches on the GitHub Repository. By default, the _`maste
 branch is selected, however, it is possible to define a different branch with the _`ref`_ argument. 
 
 ```{r eval=FALSE, tidy=FALSE}
-genWorkenvir(workflow="systemPipeR/systemPipeRNAseq", ref = "singleMachine")
-setwd("systemPipeRNAseq")
+genWorkenvir(workflow="systemPipeR/SPrnaseq", ref = "singleMachine")
+setwd("SPrnaseq")
 ```
 
 ## Download a specific R Markdown file
@@ -155,7 +156,7 @@ The URL can be specified under _`url`_ argument and the R Markdown file name in
 the _`urlname`_ argument. The default _`NULL`_ copies the current version available in the chose template.
 
 ```{r eval=FALSE, tidy=FALSE}
-genWorkenvir(workflow="rnaseq", url = "https://raw.githubusercontent.com/systemPipeR/systemPipeRNAseq/cluster/vignettes/systemPipeRNAseq.Rmd", 
+genWorkenvir(workflow="systemPipeR/SPrnaseq", url = "https://raw.githubusercontent.com/systemPipeR/systemPipeRNAseq/cluster/vignettes/systemPipeRNAseq.Rmd", 
              urlname = "rnaseq_V-cluster.Rmd")
 setwd("rnaseq")
 ```

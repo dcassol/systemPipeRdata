@@ -1,4 +1,27 @@
 changelog
+    version 1.19.10
+	- Vignette RIBO-seq
+	
+    version 1.19.9
+	- Vignette ChIP-seq
+	
+    version 1.19.6
+	- Removed .batchtools.conf.R file from .Rbuildignore
+	
+    version 1.19.5
+	- Copied the .batchtools.conf.R file to Github WF templates
+	
+    version 1.19.4
+	- Small updates, version up
+	
+    version 1.19.3
+	- Exported `getSubsetReads` function
+
+    version 1.19.2
+	- Added `getSubsetReads` function
+	- Added new cwl files
+	- Updated vignette
+	
     version 1.19.1
 	- Updated systemPipeRNAseq and systemPipeVARseq vignettes
 	
